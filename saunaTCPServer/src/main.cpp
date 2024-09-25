@@ -1,10 +1,10 @@
 /*
-  The ESP32 is a Random Access Server.
+  The ESP32 is a Access Point.
   One should be able to connect their computer to the ESP32's WiFi.
-  It should be accessible using SCADA.
-  The temperature measurements are stored at the zero'th Holding Register.
+  It should be accessible using a SCADA software.
+  The temperature measurements are stored at the 100'th Holding Register.
 
-  Configure Holding Register (offset 0) with initial value 0U
+  Configure Holding Register (offset 100) with initial value 0U
   You can get or set this holding register
   Original library
   Copyright by André Sarmento Barbosa
@@ -24,35 +24,61 @@
 #include <ModbusIP_ESP8266.h>
 
 // Modbus Sensor Register at a Holding Register
-const int tempSensorReg = 0;
+const int tempSensorReg = 100; // Modbus holding register for temperature data
 
 // Network settings
 const char* ssid = "Sauna";    // Wi-Fi network SSID
-const char* password = "1234";    // Wi-Fi password
+const char* password = "1234"; // Wi-Fi password
 
-//ModbusIP object
+// Custom IP settings (just in case)
+IPAddress local_IP(192, 168, 4, 1);    // Custom static IP
+IPAddress gateway(192, 168, 4, 1);     // Gateway (same as IP for AP mode)
+IPAddress subnet(255, 255, 255, 0);    // Subnet mask
+
+// ModbusIP object
 ModbusIP mb;
-  
+
 void setup() {
   Serial.begin(115200);
- 
+  
+  // Set custom IP address for the Access Point
+  if (!WiFi.softAPConfig(local_IP, gateway, subnet)) {
+    Serial.println("Failed to configure Access Point with custom IP");
+    while (1) {
+      delay(1000); // Halt if custom IP configuration fails
+    }
+  }
+
   // Set up the ESP32 as an Access Point (AP)
-  WiFi.softAP(ssid, password);
+  if (!WiFi.softAP(ssid, password)) {
+    Serial.println("Failed to start Access Point, restart ESP32!");
+    while (1) {
+      delay(1000); // Halt if Access Point creation fails
+    }
+  } else {
+    Serial.println("Access Point started successfully");
+  }
 
-  // Print the IP address of the ESP32 (AP) to the Serial Monitor
-  IPAddress IP = WiFi.softAPIP();
-  Serial.print("ESP 32's Access Point IP is: ");
-  Serial.println(IP);
+  // Print the custom IP address of the ESP32 (AP) to the Serial Monitor
+  Serial.print("ESP32's Access Point IP is: ");
+  Serial.println(WiFi.softAPIP());  // This should print your custom IP (192.168.4.1)
+  
+  Serial.print("ESP32's temperature sensor stored at register: ");
+  Serial.println(tempSensorReg);
 
-  mb.server();
-  mb.addHreg(tempSensorReg); // Assigned the first Holding Register to store the sensor values
+  // Start Modbus server
+  mb.server();  
+  mb.addHreg(tempSensorReg);  // Add a holding register for sensor data
+
+  // Optional: Disable Wi-Fi power saving to ensure stable connection
+  WiFi.setSleep(false);
 }
- 
-void loop() {
-  // Simulate sensor data
-  int temperature = analogRead(34); // Example: reading from GPIO34
 
-  mb.Hreg(tempSensorReg, temperature); // Update holding register with sensor data
-  mb.task(); // Handle Modbus requests
-  delay(10);
+void loop() {
+  // Simulate sensor data (e.g., reading from GPIO34 for analog input)
+  int temperature = 50; // Read sensor value (ADC value between 0 and 4095)
+
+  mb.Hreg(tempSensorReg, temperature);  // Update holding register with sensor data
+  mb.task();                            // Handle Modbus requests
+  delay(1000);                          // Update every 1 second (adjust as needed)
 }
