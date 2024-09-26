@@ -25,6 +25,7 @@
 
 // Modbus Sensor Register at a Holding Register
 const int tempSensorReg = 100; // Modbus holding register for temperature data
+const int tempPin = 24; // mock sensor pin
 
 // Network settings
 const char* ssid = "Sauna";    // Wi-Fi network SSID
@@ -76,8 +77,7 @@ void setup() {
 
 void loop() {
   // Simulate sensor data (e.g., reading from GPIO34 for analog input)
-  int temperature = 50; // Read sensor value (ADC value between 0 and 4095)
-
+  int temperature = analogRead(tempPin); // Read sensor value (ADC value between 0 and 4095)
   mb.Hreg(tempSensorReg, temperature);  // Update holding register with sensor data
   mb.task();                            // Handle Modbus requests
   delay(1000);                          // Update every 1 second (adjust as needed)
