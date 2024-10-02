@@ -1,8 +1,8 @@
 {
     "folders": [
         {
-            "name": "saunaTCPServer",
-            "path": "../../saunaTCPServer"
+            "name": "temperatureDemo",
+            "path": "../../temperatureDemo"
         }
     ]
 }
