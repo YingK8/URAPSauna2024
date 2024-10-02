@@ -2,12 +2,11 @@
 #include "THERMOMETER.h"
 #include "COOLING.h"
 
-Thermometer sensor;
-#define sensorPin 20
+#define sensorPin 33 // Must be a digital pin!
+Thermometer sensor = Thermometer(sensorPin);
 
 void setup() {
   Serial.begin(9600);
-  sensor = Thermometer(sensorPin);
 }
 
 void loop() {
