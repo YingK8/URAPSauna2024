@@ -12,6 +12,7 @@ GPIO.setmode(GPIO.BCM)
 # Define pins
 SENSOR1_EN = 17  # Digital Enable pin for Sensor 1
 SENSOR2_EN = 27  # Digital Enable pin for Sensor 2
+ENABLE_PINS = [SENSOR1_EN, SENSOR2_EN] # used to collectively control all sensors
 RX_PIN = 10      # RX pin
 TX_PIN = 8       # TX pin
 
@@ -31,6 +32,8 @@ ser = serial.Serial(
 
 # Function to read data from a sensor
 def read_sensor(enable_pin):
+    for en in ENABLE_PINS:           # turn all enable pins off
+        GPIO.output(en, GPIO.LOW)   # turn the desired enable pin back on
     GPIO.output(enable_pin, GPIO.HIGH)
     time.sleep(0.1)  # Allow sensor to stabilize
     
