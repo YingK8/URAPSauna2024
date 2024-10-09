@@ -20,9 +20,13 @@ TX_PIN = 8       # TX pin
 GPIO.setup(SENSOR1_EN, GPIO.OUT)
 GPIO.setup(SENSOR2_EN, GPIO.OUT)
 
-# Initialize serial connection
+# Initialise serial connection
 ser = serial.Serial(
-    port='/dev/ttyS0',
+    port='/dev/ttyS0', #/dev/serial0
+    # Next, ensure that the Serial Port is enabled and the Serial Console is disabled. 
+    # The 'Raspberry Pi Configuration' Tool in the GUI, or 'sudo raspi-config' in the 
+    # CLI can help with this.
+
     baudrate=9600,
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
@@ -32,14 +36,15 @@ ser = serial.Serial(
 
 # Function to read data from a sensor
 def read_sensor(enable_pin):
-    for en in ENABLE_PINS:           # turn all enable pins off
-        GPIO.output(en, GPIO.LOW)   # turn the desired enable pin back on
-    GPIO.output(enable_pin, GPIO.HIGH)
-    time.sleep(0.1)  # Allow sensor to stabilize
+    turnOff = lambda x: GPIO.output(x, GPIO.LOW)
+    map(turnOff, ENABLE_PINS)           # turn all enable pins off
+    GPIO.output(enable_pin, GPIO.HIGH)  # turn the desired enable pin back on
+    time.sleep(0.1)                     # Allow sensor to stabilize
     
     data = b''
     while ser.in_waiting:
-        data += ser.read()
+        data += ser.read()   
+        print(data)           
     
     GPIO.output(enable_pin, GPIO.LOW)
     return data.decode().strip()

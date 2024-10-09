@@ -1,10 +1,11 @@
 # Complete Project Details: https://RandomNerdTutorials.com/raspberry-pi-ds18b20-python/
 # Based on the Adafruit example: https://github.com/adafruit/Adafruit_Learning_System_Guides/blob/main/Raspberry_Pi_DS18B20_Temperature_Sensing/code.py
+
 import os
 import glob
 import time
 import RPi.GPIO as GPIO
-from PID import peltierPID
+from PID import peltierPID  # Ensure PID module is available
 
 def setup_gpio():
     GPIO.setwarnings(False)
@@ -17,8 +18,11 @@ def setup_temperature_sensor():
     os.system('modprobe w1-gpio')
     os.system('modprobe w1-therm')
     base_dir = '/sys/bus/w1/devices/'
-    device_folder = glob.glob(base_dir + '28*')[0]
-    return device_folder + '/w1_slave'
+    device_folder = glob.glob(base_dir + '28*')
+    if device_folder:
+        return device_folder[0] + '/w1_slave'
+    else:
+        raise RuntimeError("Temperature sensor not found!")
 
 def read_temp_raw(device_file):
     with open(device_file, 'r') as f:
@@ -44,21 +48,28 @@ def device_cooling_process():
     peltier_pwm.start(0)  # Start with 0% duty cycle
 
     # initiate cooling object
-    peltier_controls = peltierPID(21.0, 0.1, 0.1, 0.1)  # Adjust weights empirically
-    peltier_controls.zero_state()
+    # peltier_controls = peltierPID(21.0, 0.1, 0.1, 0.1)  # Adjust weights empirically
+    # peltier_controls.zero_state()
 
     try:
         while True:
             temp_celsius = read_temperature(device_file)
             if temp_celsius is not None:
-                feedback = peltier_controls.get_feedback(temp_celsius)
-                duty_cycle = max(0, min(100, feedback))  # Ensure duty cycle is between 0 and 100
-                peltier_pwm.ChangeDutyCycle(duty_cycle)
-                print(f"Temperature: {temp_celsius:.2f}°C, Error: {peltier_controls.getError()}, Duty Cycle: {duty_cycle:.2f}%")
+                #feedback = peltier_controls.get_feedback(temp_celsius)
+                #duty_cycle = max(0, min(100, feedback))  # Ensure duty cycle is between 0 and 100
+                #peltier_pwm.ChangeDutyCycle(duty_cycle)
+                print(temp_celsius)
+                # print(peltier_controls.getError())
+                # print(f"Temperature: {temp_celsius}°C, Error: {peltier_controls.getError()}")
             time.sleep(1)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, RuntimeError) as e:
+        print(f"Error occurred: {e}")
+    finally:
         peltier_pwm.stop()
         GPIO.cleanup()
 
 if __name__ == '__main__':
-    device_cooling_process()
+    try:
+        device_cooling_process()
+    except RuntimeError as e:
+        print(f"Runtime error: {e}")

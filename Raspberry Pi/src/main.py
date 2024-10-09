@@ -1,10 +1,11 @@
 import multiprocessing
-import serial
 import RPi.GPIO as GPIO
+import os
+import glob
 from device_cooling import device_cooling_process
 from modbus_reading import sensor_reading_process
 
-# Your previous code here
+
 
 if __name__ == '__main__':
     # Create two separate processes
@@ -14,8 +15,6 @@ if __name__ == '__main__':
     # Start the device cooling process
     device_cooling.start()
     
-
-
     # Wait for the device cooling process to finish (optional)
     try:
         # Wait for both processes to finish
