@@ -16,6 +16,9 @@ ENABLE_PINS = [SENSOR1_EN, SENSOR2_EN] # used to collectively control all sensor
 RX_PIN = 10      # RX pin
 TX_PIN = 8       # TX pin
 
+# Define sample time period (3.6 seconods or 1000 samples per hour)
+sample_time = 3.6
+
 # Set up GPIO pins
 GPIO.setup(SENSOR1_EN, GPIO.OUT)
 GPIO.setup(SENSOR2_EN, GPIO.OUT)
@@ -64,17 +67,27 @@ signal.signal(signal.SIGTERM, signal_handler)
 def sensor_reading_process():
     try:
         while True:
+            start_time = time.time()  # Record the start time of the loop
+
             # Read from Sensor 1
             sensor1_data = read_sensor(SENSOR1_EN)
-            print(f"Sensor 1 Data: {sensor1_data}")
+            print("Sensor 1 Data: {}".format(sensor1_data))
 
             # Read from Sensor 2
             sensor2_data = read_sensor(SENSOR2_EN)
-            print(f"Sensor 2 Data: {sensor2_data}")
+            print("Sensor 2 Data: {}".format(sensor2_data))
 
-            time.sleep(1)  # Delay between readings
+            # Calculate the time taken for sensor readings
+            elapsed_time = time.time() - start_time
+            remaining_time = sample_time - elapsed_time  # Ensure total loop time is sample_time seconds
+
+            # If there's time remaining, sleep for that period
+            if remaining_time > 0:
+                time.sleep(remaining_time)
+            else:
+                print("Warning: Sensor reading took longer than {} seconds, increase the interval to solve this.".format(sample_time))
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print("An error occurred: {}".format(e))
         GPIO.cleanup()
         ser.close()

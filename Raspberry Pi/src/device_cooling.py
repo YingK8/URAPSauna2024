@@ -5,7 +5,6 @@ import os
 import glob
 import time
 import RPi.GPIO as GPIO
-from PID import peltierPID  # Ensure PID module is available
 
 def setup_gpio():
     GPIO.setwarnings(False)
@@ -43,33 +42,23 @@ def device_cooling_process():
     peltier_pin = setup_gpio()
     device_file = setup_temperature_sensor()
 
-    frequency = 1000  # Set frequency in Hertz
-    peltier_pwm = GPIO.PWM(peltier_pin, frequency)
-    peltier_pwm.start(0)  # Start with 0% duty cycle
-
-    # initiate cooling object
-    # peltier_controls = peltierPID(21.0, 0.1, 0.1, 0.1)  # Adjust weights empirically
-    # peltier_controls.zero_state()
+    # Initiate cooling feedback
+    peltier_controls = PID(21.0, 0.1, 0.1, 0.1)  # Adjust weights empirically
+    peltier_controls.zero_state()
 
     try:
         while True:
             temp_celsius = read_temperature(device_file)
             if temp_celsius is not None:
-                #feedback = peltier_controls.get_feedback(temp_celsius)
-                #duty_cycle = max(0, min(100, feedback))  # Ensure duty cycle is between 0 and 100
-                #peltier_pwm.ChangeDutyCycle(duty_cycle)
-                print(temp_celsius)
-                # print(peltier_controls.getError())
-                # print(f"Temperature: {temp_celsius}°C, Error: {peltier_controls.getError()}")
+                print("Temperature: {}°C".format(temp_celsius))
             time.sleep(1)
     except (KeyboardInterrupt, RuntimeError) as e:
-        print(f"Error occurred: {e}")
+        print("Error occurred: {}".format(e))
     finally:
-        peltier_pwm.stop()
         GPIO.cleanup()
 
 if __name__ == '__main__':
     try:
         device_cooling_process()
     except RuntimeError as e:
-        print(f"Runtime error: {e}")
+        print("Runtime error: {}".format(e))

@@ -1,7 +1,7 @@
 import time
 from abc import ABC, abstractmethod
 
-class PID(ABC):
+class PID:
     """Abstract class defining the PID interface"""
 
     def __init__(self, target_value: float, weight_p: float, weight_i: float, weight_d: float) -> None:
@@ -28,20 +28,18 @@ class PID(ABC):
         self.Wd = weight_d
         self.zero_state()
         self.latest_error = 0
-        super().__init__()
 
-    @abstractmethod
-    def _update_time(self) -> None:
+    def update_time(self) -> None:
         """Updates the old time with the current time."""
         self.old_time = time.time() 
     
-    def _calculate_dt(self) -> None:
+    def calculate_dt(self) -> None:
         """Calculates time difference since last update."""
         self.new_time = time.time()
         self.dt = self.new_time - self.old_time  # Calculate delta time in seconds
         self.old_time = self.new_time
 
-    def _get_feedback(self, new_input: float) -> float:
+    def get_feedback(self, new_input: float) -> float:
         """
         Calculates feedback based on the new input.
 
@@ -60,18 +58,18 @@ class PID(ABC):
                          self.Wi * self.integrate_error() + 
                          self.Wd * self.differentiate_error())
 
-    def _integrate_error(self) -> float:
+    def integrate_error(self) -> float:
         self.calculate_dt()
         self.accumulated_error += self.new_error * self.dt
         return self.accumulated_error
 
-    def _differentiate_error(self) -> float:
+    def differentiate_error(self) -> float:
         self.calculate_dt()
         self.derivative = (self.new_error - self.previous_error) / self.dt
         self.previous_error = self.new_error
         return self.derivative
 
-    def _error(self, new_input: float) -> float:
+    def error(self, new_input: float) -> float:
         """
         Calculates the signed error from the setpoint.
 
@@ -97,21 +95,6 @@ class PID(ABC):
         self.previous_error = 0.0
         self.new_error = 0.0
         self.old_time = time.time()  # Set the initial time for dt calculations
-
-    def drive_feedback(self) -> None:
-        pass
-
-class peltierPID(PID):
-    def __init__(self, feedback_func, drive_func, target_value: float, weight_p: float, weight_i: float, weight_d: float) -> None:
-        """Make sure drive_func is a one parameter function that accepts a PMW percentage in integer"""
-        super().__init__(target_value, weight_p, weight_i, weight_d)
-        self.feedback_func = feedback_func
-        self.drive_func = drive_func
-    
-    def drive_feedback(self) -> None:
-        feedback = self.feedback_func()
-        StepSize = max(super()._get_feedback(feedback), 100)
-        self.drive_func(StepSize)
 
         
 
