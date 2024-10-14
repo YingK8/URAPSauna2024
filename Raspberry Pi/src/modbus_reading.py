@@ -38,9 +38,8 @@ ser = serial.Serial(
 )
 
 # Function to read data from a sensor
-def read_sensor(enable_pin):
-    turnOff = lambda x: GPIO.output(x, GPIO.LOW)
-    map(turnOff, ENABLE_PINS)           # turn all enable pins off
+def read_sensor(enable_pin: int) -> str:
+    turnOffSensors();                   # turn all enable pins off
     GPIO.output(enable_pin, GPIO.HIGH)  # turn the desired enable pin back on
     time.sleep(0.1)                     # Allow sensor to stabilize
     
@@ -52,16 +51,21 @@ def read_sensor(enable_pin):
     GPIO.output(enable_pin, GPIO.LOW)
     return data.decode().strip()
 
+# Function to read data from a sensor
+def turnOffSensors() -> None:
+    turnOff = lambda x: GPIO.output(x, GPIO.LOW)
+    map(turnOff, ENABLE_PINS)           # turn all enable pins off
+
 # Function to handle graceful shutdown
-def signal_handler(sig, frame):
+def signal_handler() -> None:
     print("Cleaning up GPIO and closing serial connection...")
     GPIO.cleanup()
     ser.close()
     sys.exit(0)
 
 # Register the signal handler
-signal.signal(signal.SIGINT, signal_handler)
-signal.signal(signal.SIGTERM, signal_handler)
+signal.signal(signal.SIGINT, signal_handler)    # user interrupt Ctrl + C
+signal.signal(signal.SIGTERM, signal_handler)   # 'kill' termination by other programs
 
 # Main sensor reading function
 def sensor_reading_process():

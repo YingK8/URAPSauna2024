@@ -35,7 +35,7 @@ def read_temperature(device_file):
     equals_pos = lines[1].find('t=')
     if equals_pos != -1:
         temp_string = lines[1][equals_pos+2:]
-        return float(temp_string) / 1000.0
+        return eval(temp_string) / 1000.0
     return None
 
 def device_cooling_process():
@@ -43,8 +43,8 @@ def device_cooling_process():
     device_file = setup_temperature_sensor()
 
     # Initiate cooling feedback
-    peltier_controls = PID(21.0, 0.1, 0.1, 0.1)  # Adjust weights empirically
-    peltier_controls.zero_state()
+   # peltier_controls =   # Adjust weights empirically
+   # peltier_controls.zero_state()
 
     try:
         while True:

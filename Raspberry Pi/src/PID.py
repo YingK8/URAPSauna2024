@@ -2,7 +2,7 @@ import time
 from abc import ABC, abstractmethod
 
 class PID:
-    """Abstract class defining the PID interface"""
+    """class defining the PID interface"""
 
     def __init__(self, target_value: float, weight_p: float, weight_i: float, weight_d: float) -> None:
         """
