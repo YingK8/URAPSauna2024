@@ -1,6 +1,7 @@
 import os
 import glob
 import time
+from typing import List
 
 class Thermometers:
     
@@ -42,14 +43,18 @@ class Thermometers:
         return temperatures
 
 # Main sensor reading function
-def oneWire_reading_process(sample_time: float):
+def oneWire_reading_process(sample_time: float, registry: List[float]):
     Sensors = Thermometers()
     try:
         while True:
             start_time = time.time()  # Record the start time of the loop
 
-            # Get all the sensor data
+            # Get all the sensor data and save them to an external list:
             allTemperatures = Sensors.readAllTemperatures()
+            registry.clear()
+            registry.extend(allTemperatures)
+
+            # Print out the sensor datas
             for sensor in allTemperatures.keys():
                 print("Sensor {} temperature: {}".format(sensor, allTemperatures[sensor]))
 

@@ -6,13 +6,11 @@ from device_cooling import device_cooling_process
 from oneWireTempReading import oneWire_reading_process
 # from modbus_reading import sensor_reading_process
 
+oneWireTempRegistry = []
+
 if __name__ == '__main__':
-    # Create two separate processes
-    sensor_reading = multiprocessing.Process(target=oneWire_reading_process)
-    # device_cooling = multiprocessing.Process(target=device_cooling_process)
-    
-    # Start the device cooling process
-    # device_cooling.start()
+    # Create two separate processes: 5 secs sample period; save data to oneWireTempRegistry
+    sensor_reading = multiprocessing.Process(target=oneWire_reading_process, args=(5, oneWireTempRegistry)) 
     sensor_reading.start()
     
     # Wait for the device cooling process to finish (optional)
