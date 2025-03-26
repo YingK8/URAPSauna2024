@@ -243,11 +243,10 @@ void setup(void) {
 }
 
 void loop(void) {
-  if (Serial.available()) {
-    uint8_t ch = Serial.read();
-    uint8_t hex_cmd = hex_state_machine(ch);
-    if (hex_cmd != C2_NO_COMMAND) {
-      execute_c2_command(hex_cmd, 1);
-    }
+  uint8_t ch = Serial.read();
+  uint8_t hex_cmd = hex_state_machine(ch);
+  Serial.println(hex_cmd);
+  if (hex_cmd != C2_NO_COMMAND) {
+    execute_c2_command(hex_cmd, 1);
   }
 }
