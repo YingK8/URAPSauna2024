@@ -1,0 +1,225 @@
+#
+UNITS=MM
+ID=1026
+#
+#Component attribute names
+#
+@0 .comp_mount_type
+#
+# CMP 0
+CMP 0 -1.905 26.162 180 N J1 TERMBLK_254-3N ;0=2;ID=1007
+PRP CATEGORY 'Fixed Terminal Blocks'
+PRP DESCRIPTION 'Fixed Terminal Blocks 3P TERMINAL BLOCK'
+PRP MANUFACTURER 'TE Connectivity AMP Connectors'
+PRP MPN '282834-3'
+PRP OPERATING_TEMPERATURE '-40°C ~ 105°C'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'RoHS Compliant'
+PRP SERIES 'Buchanan'
+PRP SUBCATEGORY 'Terminal Blocks'
+PRP TYPE 'Through Hole; Screw - Rising Cage Clamp; Side wire entry, Horizontal with Board'
+TOP 0 -1.905 26.162 180 N 0 0 1
+TOP 1 -6.985 26.162 180 N 1 0 3
+TOP 2 -4.445 26.162 180 N 2 0 2
+#
+# CMP 1
+CMP 0 -33.401 3.81 0 N J10 TERMBLK_254-3N ;0=2;ID=1011
+PRP CATEGORY 'Fixed Terminal Blocks'
+PRP DESCRIPTION 'Fixed Terminal Blocks 3P TERMINAL BLOCK'
+PRP MANUFACTURER 'TE Connectivity AMP Connectors'
+PRP MPN '282834-3'
+PRP OPERATING_TEMPERATURE '-40°C ~ 105°C'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'RoHS Compliant'
+PRP SERIES 'Buchanan'
+PRP SUBCATEGORY 'Terminal Blocks'
+PRP TYPE 'Through Hole; Screw - Rising Cage Clamp; Side wire entry, Horizontal with Board'
+TOP 0 -33.401 3.81 0 N 0 1 1
+TOP 1 -28.321 3.81 0 N 1 1 3
+TOP 2 -30.861 3.81 0 N 2 1 2
+#
+# CMP 2
+CMP 0 -10.362 26.162 180 N J2 TERMBLK_254-3N ;0=2;ID=1012
+PRP CATEGORY 'Fixed Terminal Blocks'
+PRP DESCRIPTION 'Fixed Terminal Blocks 3P TERMINAL BLOCK'
+PRP MANUFACTURER 'TE Connectivity AMP Connectors'
+PRP MPN '282834-3'
+PRP OPERATING_TEMPERATURE '-40°C ~ 105°C'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'RoHS Compliant'
+PRP SERIES 'Buchanan'
+PRP SUBCATEGORY 'Terminal Blocks'
+PRP TYPE 'Through Hole; Screw - Rising Cage Clamp; Side wire entry, Horizontal with Board'
+TOP 0 -10.362 26.162 180 N 0 2 1
+TOP 1 -15.442 26.162 180 N 1 2 3
+TOP 2 -12.902 26.162 180 N 2 2 2
+#
+# CMP 3
+CMP 0 -19.939 26.179 180 N J3 TERMBLK_254-3N ;0=2;ID=1013
+PRP CATEGORY 'Fixed Terminal Blocks'
+PRP DESCRIPTION 'Fixed Terminal Blocks 3P TERMINAL BLOCK'
+PRP MANUFACTURER 'TE Connectivity AMP Connectors'
+PRP MPN '282834-3'
+PRP OPERATING_TEMPERATURE '-40°C ~ 105°C'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'RoHS Compliant'
+PRP SERIES 'Buchanan'
+PRP SUBCATEGORY 'Terminal Blocks'
+PRP TYPE 'Through Hole; Screw - Rising Cage Clamp; Side wire entry, Horizontal with Board'
+TOP 0 -19.939 26.179 180 N 0 3 1
+TOP 1 -25.019 26.179 180 N 1 3 3
+TOP 2 -22.479 26.179 180 N 2 3 2
+#
+# CMP 4
+CMP 0 -28.321 26.179 180 N J4 TERMBLK_254-3N ;0=2;ID=1014
+PRP CATEGORY 'Fixed Terminal Blocks'
+PRP DESCRIPTION 'Fixed Terminal Blocks 3P TERMINAL BLOCK'
+PRP MANUFACTURER 'TE Connectivity AMP Connectors'
+PRP MPN '282834-3'
+PRP OPERATING_TEMPERATURE '-40°C ~ 105°C'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'RoHS Compliant'
+PRP SERIES 'Buchanan'
+PRP SUBCATEGORY 'Terminal Blocks'
+PRP TYPE 'Through Hole; Screw - Rising Cage Clamp; Side wire entry, Horizontal with Board'
+TOP 0 -28.321 26.179 180 N 0 4 1
+TOP 1 -33.401 26.179 180 N 1 4 3
+TOP 2 -30.861 26.179 180 N 2 4 2
+#
+# CMP 5
+CMP 0 -40.64 21.844 90 N J5 TERMBLK_254-3N ;0=2;ID=1015
+PRP CATEGORY 'Fixed Terminal Blocks'
+PRP DESCRIPTION 'Fixed Terminal Blocks 3P TERMINAL BLOCK'
+PRP MANUFACTURER 'TE Connectivity AMP Connectors'
+PRP MPN '282834-3'
+PRP OPERATING_TEMPERATURE '-40°C ~ 105°C'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'RoHS Compliant'
+PRP SERIES 'Buchanan'
+PRP SUBCATEGORY 'Terminal Blocks'
+PRP TYPE 'Through Hole; Screw - Rising Cage Clamp; Side wire entry, Horizontal with Board'
+TOP 0 -40.64 21.844 90 N 0 5 1
+TOP 1 -40.64 16.764 90 N 1 5 3
+TOP 2 -40.64 19.304 90 N 2 5 2
+#
+# CMP 6
+CMP 0 -40.64 13.335 90 N J6 TERMBLK_254-3N ;0=2;ID=1016
+PRP CATEGORY 'Fixed Terminal Blocks'
+PRP DESCRIPTION 'Fixed Terminal Blocks 3P TERMINAL BLOCK'
+PRP MANUFACTURER 'TE Connectivity AMP Connectors'
+PRP MPN '282834-3'
+PRP OPERATING_TEMPERATURE '-40°C ~ 105°C'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'RoHS Compliant'
+PRP SERIES 'Buchanan'
+PRP SUBCATEGORY 'Terminal Blocks'
+PRP TYPE 'Through Hole; Screw - Rising Cage Clamp; Side wire entry, Horizontal with Board'
+TOP 0 -40.64 13.335 90 N 0 6 1
+TOP 1 -40.64 8.255 90 N 1 6 3
+TOP 2 -40.64 10.795 90 N 2 6 2
+#
+# CMP 7
+CMP 0 -6.985 3.81 0 N J7 TERMBLK_254-3N ;0=2;ID=1017
+PRP CATEGORY 'Fixed Terminal Blocks'
+PRP DESCRIPTION 'Fixed Terminal Blocks 3P TERMINAL BLOCK'
+PRP MANUFACTURER 'TE Connectivity AMP Connectors'
+PRP MPN '282834-3'
+PRP OPERATING_TEMPERATURE '-40°C ~ 105°C'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'RoHS Compliant'
+PRP SERIES 'Buchanan'
+PRP SUBCATEGORY 'Terminal Blocks'
+PRP TYPE 'Through Hole; Screw - Rising Cage Clamp; Side wire entry, Horizontal with Board'
+TOP 0 -6.985 3.81 0 N 0 7 1
+TOP 1 -1.905 3.81 0 N 1 7 3
+TOP 2 -4.445 3.81 0 N 2 7 2
+#
+# CMP 8
+CMP 0 -15.442 3.81 0 N J8 TERMBLK_254-3N ;0=2;ID=1018
+PRP CATEGORY 'Fixed Terminal Blocks'
+PRP DESCRIPTION 'Fixed Terminal Blocks 3P TERMINAL BLOCK'
+PRP MANUFACTURER 'TE Connectivity AMP Connectors'
+PRP MPN '282834-3'
+PRP OPERATING_TEMPERATURE '-40°C ~ 105°C'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'RoHS Compliant'
+PRP SERIES 'Buchanan'
+PRP SUBCATEGORY 'Terminal Blocks'
+PRP TYPE 'Through Hole; Screw - Rising Cage Clamp; Side wire entry, Horizontal with Board'
+TOP 0 -15.442 3.81 0 N 0 8 1
+TOP 1 -10.362 3.81 0 N 1 8 3
+TOP 2 -12.902 3.81 0 N 2 8 2
+#
+# CMP 9
+CMP 0 -25.019 3.81 0 N J9 TERMBLK_254-3N ;0=2;ID=1019
+PRP CATEGORY 'Fixed Terminal Blocks'
+PRP DESCRIPTION 'Fixed Terminal Blocks 3P TERMINAL BLOCK'
+PRP MANUFACTURER 'TE Connectivity AMP Connectors'
+PRP MPN '282834-3'
+PRP OPERATING_TEMPERATURE '-40°C ~ 105°C'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'RoHS Compliant'
+PRP SERIES 'Buchanan'
+PRP SUBCATEGORY 'Terminal Blocks'
+PRP TYPE 'Through Hole; Screw - Rising Cage Clamp; Side wire entry, Horizontal with Board'
+TOP 0 -25.019 3.81 0 N 0 9 1
+TOP 1 -19.939 3.81 0 N 1 9 3
+TOP 2 -22.479 3.81 0 N 2 9 2
+#
+# CMP 10
+CMP 1 13.45 26.543 0 N JP1 2X05 ;0=2;ID=1020
+PRP CATEGORY 'Headers'
+PRP DESCRIPTION 'Header, Straight, 2x5 Position'
+PRP MANUFACTURER 'Generic'
+PRP MPN 'Generic'
+PRP OPERATING_TEMPERATURE 'Generic'
+PRP PART_STATUS 'Active'
+PRP PITCH '0.100" (2.54mm)'
+PRP ROHS_COMPLIANCE 'Generic'
+PRP SERIES 'Generic'
+PRP SUB-CATEGORY 'Headers, Male Pins'
+PRP TYPE 'Board to Board or Cable, Unshrouded, Through Hole, Straight'
+TOP 0 8.37 25.273 0 N 3 0 1
+TOP 1 8.37 27.813 0 N 0 10 2
+TOP 2 10.91 25.273 0 N 3 1 3
+TOP 3 10.91 27.813 0 N 0 11 4
+TOP 4 13.45 25.273 0 N 3 2 5
+TOP 5 13.45 27.813 0 N 1 10 6
+TOP 6 15.99 25.273 0 N 2 10 7
+TOP 7 15.99 27.813 0 N 3 3 8
+TOP 8 18.53 25.273 0 N 4 0 9
+TOP 9 18.53 27.813 0 N 3 4 10
+#
+# CMP 11
+CMP 2 -18.415 11.684 0 N R1 PR-D2.3XL6.5MM ;0=2;ID=1023
+PRP MPN 'FHCFR-1/4W-472J'
+PRP VALUE '4.7K'
+PRP TYPE 'Resistor'
+TOP 0 -23.368 11.684 0 N 2 11 1
+TOP 1 -13.208 11.684 0 N 0 12 2
+#
+# CMP 12
+CMP 3 -2.54 18.902 180 N C1 0402 ;0=1;ID=1024
+PRP PROD_ID 'CAP-15083'
+PRP VALUE '0.1uF'
+PRP TYPE 'Capacitor'
+TOP 0 -1.96 18.902 180 N 0 13 1
+TOP 1 -3.12 18.902 180 N 1 11 2
+#
+# CMP 13
+CMP 4 -2.794 17.526 180 N C2 0603 ;0=1;ID=1025
+PRP PROD_ID 'CAP-11015'
+PRP VALUE '10uF'
+PRP TYPE 'Capacitor'
+TOP 0 -1.944 17.526 180 N 0 14 1
+TOP 1 -3.644 17.526 180 N 1 12 2
