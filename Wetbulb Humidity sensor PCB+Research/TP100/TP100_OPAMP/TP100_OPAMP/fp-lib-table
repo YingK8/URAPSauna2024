@@ -1,0 +1,6 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "74HC4051D")(type "KiCad")(uri "${KIPRJMOD}/components/ul_74HC4051D/KiCADv6/footprints.pretty")(options "")(descr ""))
+  (lib (name "LM324N")(type "KiCad")(uri "${KIPRJMOD}/components/LM324N/KiCADv6/footprints.pretty")(options "")(descr ""))
+  (lib (name "footprints")(type "KiCad")(uri "${KIPRJMOD}/components/TERM BLK 3P SIDE ENT 2.54MM PCB/KiCADv6/footprints.pretty")(options "")(descr ""))
+)
